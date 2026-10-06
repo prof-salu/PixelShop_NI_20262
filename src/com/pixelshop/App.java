@@ -9,7 +9,7 @@ public class App {
         Scanner entrada = new Scanner(System.in);
         Produto p1 = new Produto("Processador I7", 1200, 30);
         Produto p2 = null;
-        int opcao = 0;
+        int opcao;
 
         System.out.println("***** Bem-vindo ao PIXEL SHOP *****");
         do{
@@ -27,16 +27,7 @@ public class App {
             switch(opcao){
                 case 1 -> {
                     System.out.println("*** Cadastro de produto ***");
-                    if(p1 == null){
-                        System.out.print("Nome: ");
-                        String nome = entrada.nextLine();
-                        System.out.print("Preço: ");
-                        double preco = Double.parseDouble(entrada.nextLine());
-                        System.out.print("Quantidade: ");
-                        int quantidade = Integer.parseInt(entrada.nextLine());
-                        p1 = new Produto(nome, preco, quantidade);
-                        System.out.println("Produto cadastrado com sucesso!");
-                    }else if(p2 == null){
+                    if(p2 == null){
                         System.out.print("Nome: ");
                         String nome = entrada.nextLine();
                         System.out.print("Preço: ");
@@ -53,8 +44,7 @@ public class App {
                     System.out.println("*** Consulta produto ***");
                     System.out.print("Informe o nome do produto: ");
                     String busca = entrada.nextLine();
-                    //Sempre verifique se o valor for nulo PRIMEIRO
-                    if(p1 != null && p1.getNome().equalsIgnoreCase(busca) ){
+                    if(p1.getNome().equalsIgnoreCase(busca)){
                         System.out.println("Valor total: R$" +
                                         (p1.getQuantidade() * p1.getPreco()));
                     }else if(p2 != null && p2.getNome().equalsIgnoreCase(busca)){
@@ -68,12 +58,12 @@ public class App {
                     System.out.println("*** Adicionar ao estoque ***");
                     System.out.print("Informe o nome do produto: ");
                     String busca = entrada.nextLine();
-                    //Sempre verifique se o valor for nulo PRIMEIRO
-                    if(p1 != null && p1.getNome().equalsIgnoreCase(busca) ){
+                    if(p1.getNome().equalsIgnoreCase(busca)){
                         System.out.print("Informe a quantidade: ");
                         int quantidade = Integer.parseInt(entrada.nextLine());
                         p1.adicionarEstoque(quantidade);
                         System.out.println("Produto adicionado ao estoque");
+                        //Sempre verifique se o valor for nulo PRIMEIRO
                     }else if(p2 != null && p2.getNome().equalsIgnoreCase(busca)){
                         System.out.print("Informe a quantidade: ");
                         int quantidade = Integer.parseInt(entrada.nextLine());
@@ -87,12 +77,12 @@ public class App {
                     System.out.println("*** Remover do estoque ***");
                     System.out.print("Informe o nome do produto: ");
                     String busca = entrada.nextLine();
-                    //Sempre verifique se o valor for nulo PRIMEIRO
-                    if(p1 != null && p1.getNome().equalsIgnoreCase(busca) ){
+                    if(p1.getNome().equalsIgnoreCase(busca)){
                         System.out.print("Informe a quantidade: ");
                         int quantidade = Integer.parseInt(entrada.nextLine());
                         p1.removerEstoque(quantidade);
                         System.out.println("Produto removido do estoque");
+                        //Sempre verifique se o valor for nulo PRIMEIRO
                     }else if(p2 != null && p2.getNome().equalsIgnoreCase(busca)){
                         System.out.print("Informe a quantidade: ");
                         int quantidade = Integer.parseInt(entrada.nextLine());
@@ -105,12 +95,12 @@ public class App {
                 case 5 -> {System.out.println("*** Alterar preço ***");
                     System.out.print("Informe o nome do produto: ");
                     String busca = entrada.nextLine();
-                    //Sempre verifique se o valor for nulo PRIMEIRO
-                    if(p1 != null && p1.getNome().equalsIgnoreCase(busca) ){
+                    if(p1.getNome().equalsIgnoreCase(busca)){
                         System.out.print("Informe o novo preço: ");
                         double preco = Double.parseDouble(entrada.nextLine());
                         p1.setPreco(preco);
                         System.out.println("Produto alterado");
+                        //Sempre verifique se o valor for nulo PRIMEIRO
                     }else if(p2 != null && p2.getNome().equalsIgnoreCase(busca)){
                         System.out.print("Informe o novo preço: ");
                         double preco = Double.parseDouble(entrada.nextLine());
@@ -120,12 +110,8 @@ public class App {
                         System.out.println("Produto não encontrado");
                     }
                 }
-                case 6 -> {
-                    System.out.println("Encerrando o sistema...");
-                }
-                default -> {
-                    System.out.println("Opção inválida. Tente Novamente");
-                }
+                case 6 -> System.out.println("Encerrando o sistema...");
+                default -> System.out.println("Opção inválida. Tente Novamente");
             }
         }while(opcao != 6);
         //Encerrando o Scanner
